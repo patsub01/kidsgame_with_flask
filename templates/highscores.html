@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guess the Number</title>
+    <title>High Scores</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -12,15 +12,13 @@
         <img src="./static/images/programming.gif" alt="Logo" class="logo">
     </header>
     <div class="container">
-        <h1>Guess the Number</h1>
-        <p>{{ message }}</p>
-        <form method="POST">
-            <label for="guess">Enter your guess (1-10):</label>
-            <input type="number" name="guess" id="guess" min="1" max="10" required>
-            <input type="hidden" name="attempts_left" value="{{ attempts_left }}">
-            <button type="submit">Submit</button>
-        </form>
-        <p>Attempts left: {{ attempts_left }}</p>
+        <h1>High Scores</h1>
+        <ul>
+            {% for score in scores %}
+            <li>{{ score['player_name'] }} - {{ score['score'] }} attempts left</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">Back to Game</a>
     </div>
 </body>
 </html>
